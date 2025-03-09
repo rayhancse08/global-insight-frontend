@@ -113,6 +113,7 @@
 .navItem:hover .dropdownMenu,
 .navItem:focus-within .dropdownMenu {
     display: block;
+    z-index: 1000;
 }
 
 .dropdownItem {

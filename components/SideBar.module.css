@@ -1,6 +1,20 @@
-/* Sidebar Styles */
+/* Sidebar Container */
 .sidebar {
-    position: relative;
+    position: fixed;
+    top: 10%;
+    /*left: -100%;*/
+    width: 250px;
+    height: 100vh;
+    background-color: #111;
+    padding: 20px;
+    text-align: center;
+    transition: left 0.3s ease-in-out;
+    z-index: 1001; /* Above overlay */
+}
+
+/* Sidebar Open */
+.sidebar.open {
+    left: 0;
 }
 
 /* Mobile Menu Button */
@@ -8,31 +22,15 @@
     display: none;
     background: none;
     border: none;
-    color: white;
+    color: black;
     font-size: 24px;
     position: absolute;
     top: 10px;
     left: 10px;
     cursor: pointer;
-    z-index: 1000;
-}
-
-/* Sidebar Container */
-.container {
-    width: 250px;
-    background-color: #111;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Sidebar Title */
-.title {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 15px;
+    z-index: 1002;
+    /*display: none;*/
+    /* Above sidebar */
 }
 
 /* Category List */
@@ -60,24 +58,35 @@
     background-color: #444;
 }
 
-/* Mobile Styles */
+ /*Overlay - Only visible on mobile */
 @media (max-width: 768px) {
-    .menuButton {
-        display: block;
-    }
-
-    .container {
+    .overlay {
         position: fixed;
         top: 0;
         left: 0;
-        height: 100vh;
-        width: 250px;
-        transform: translateX(-100%);
-        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000; /* Behind sidebar */
+        display: block;
+    }
+    .sidebar{
+        left: -100%;
+        top: 5%;
+    }
+    .menuButton{
+        display: block;
     }
 
-    /* Sidebar Open State */
-    .open {
-        transform: translateX(0);
+    /* Hide overlay when sidebar is closed */
+    .sidebar:not(.open) + .overlay {
+        display: none;
+    }
+}
+
+/* Hide overlay on larger screens */
+@media (min-width: 769px) {
+    .overlay {
+        display: none !important;
     }
 }

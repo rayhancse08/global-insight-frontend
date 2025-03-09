@@ -1,0 +1,125 @@
+/* HomeCarousel.module.css */
+.carouselContainer {
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carouselWrapper {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE */
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+}
+
+/* Hide scrollbar for Webkit browsers */
+.carouselWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.card {
+    flex: 0 0 calc(25% - 16px); /* 4 cards per slide */
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    scroll-snap-align: start;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.cardImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.cardBody {
+    padding: 10px;
+    text-align: center;
+}
+
+.readMoreButton {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background: #0070f3;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.readMoreButton:hover {
+    background: #005ac1;
+}
+
+/* Scroll Buttons */
+.scrollButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.scrollButton:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.scrollButton:first-of-type {
+    left: 0;
+}
+
+.scrollButton:last-of-type {
+    right: 0;
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+    .card {
+        flex: 0 0 calc(33.33% - 16px); /* 3 cards per slide on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 calc(100% - 6px); /* 2 cards per slide on smaller tablets */
+    }
+}
+
+@media (max-width: 640px) {
+    .carouselContainer {
+        padding: 0 10px;
+    }
+
+    .carouselWrapper {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+    }
+
+    .card {
+        flex: 0 0 calc(100% - 6px); /* 1 card per slide on mobile */
+        max-width: 300px;
+        /*margin: 0 auto;*/
+    }
+
+    .scrollButton {
+        display: none; /* Hide scroll buttons on mobile */
+    }
+}

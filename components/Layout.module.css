@@ -29,8 +29,18 @@
 
 .content {
     flex: 1; /* Takes up remaining space */
-    padding: 20px;
+    /*padding: 10px;*/
     background: #fff; /* Adjust if needed */
     border-radius: 8px;
-    margin-left: 20px; /* Space between sidebar and content */
+    /*margin-left: 10px; !* Space between sidebar and content *!*/
+}
+
+
+@media (max-width: 768px) {
+    .sidebar{
+        /*display: none;*/
+        width: 0; /* Fixed width */
+        flex-shrink: 0; /* Prevents shrinking */
+        background-color: #1a1a1a;
+    }
 }
