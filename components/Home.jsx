@@ -63,16 +63,19 @@ const HomeCarousel = () => {
                                     ref={(el) => el && carouselRefs.current.set(category.id, el)}
                                     className={styles.carouselWrapper}
                                 >
-                                    {category.posts.map((post) => (
+                                    {category.posts.map((post, index) => (
                                         <div key={post.id} className={styles.card}>
                                             {post.thumbnail && (
                                                 <Image
                                                     src={post.thumbnail}
                                                     alt={post.title}
-                                                    width={250}
+                                                    width={200}
                                                     height={200}
                                                     className={styles.cardImage}
-                                                    priority
+                                                    priority={index === 0} // Only prioritize the first image (above the fold)
+                                                    loading={index === 0 ? "eager" : "lazy"} // Eager for first, lazy for others
+                                                    placeholder={index === 0 ? "empty" : "blur"} // Blur effect for lazy-loaded images
+                                                    blurDataURL={index === 0 ? undefined : "/path-to-placeholder.jpg"} // Use placeholder for lazy images
                                                 />
                                             )}
                                             <div className={styles.cardBody}>

@@ -23,7 +23,7 @@
 }
 
 .card {
-    flex: 0 0 calc(25% - 16px); /* 4 cards per slide */
+    flex: 0 0 calc(33.3% - 16px); /* 4 cards per slide */
     border-radius: 10px;
     overflow: hidden;
     background: #fff;
